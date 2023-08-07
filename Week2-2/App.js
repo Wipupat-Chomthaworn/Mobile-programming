@@ -29,9 +29,16 @@ const picture = [
 export default function App() {
   return (
     <View style={styles.container}>
-      
+        <View style={styles.header}>
+        <Image 
+          style={styles.logo}
+          source={require('../Week2-2/picture/IT_Logo.png')}
+          resizeMode="contain"
+        />
+        <Text style={{ fontSize: 40, color: 'blue', fontWeight: 'bold' }}>Programs</Text>
+      </View>
       {/* <Text>Open up App.js to start working on your app!</Text> */}
-      <StatusBar style="auto" />
+      {/* <StatusBar style="auto" /> */}
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         {picture.map((x, index) => {
           return (
@@ -57,5 +64,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  header: {
+    width:"100%",
+    height:100,
+    backgroundColor:'#AAD9E6',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 25,
+    // position: "absolute",
+    // top: 0,
+    // left: 0,
+    // right: 0,
+    // paddingTop: 50, // You can adjust this value to add spacing at the top of the header
+    // backgroundColor: "white", // You can set the desired background color for the header
+    // alignItems: "center",
+    // justifyContent: "center",
+  },
+  logo:{
+    width:60,
+    height:60,
+
   },
 });
