@@ -27,8 +27,8 @@ const GameScreen = (props) => {
         </View>
         <Text>
           {/* ...เพิ่มโค้ด แสดงผลลัพธ์การทายตัวเลข... */}
-          the answer is {selectedNumber < props.answer? <Text>less Than</Text>:
-           selectedNumber > props.answer?<Text> Greater than</Text>
+          the answer is {selectedNumber < props.answer? <Text>Greater </Text>:
+           selectedNumber > props.answer?<Text> Lower </Text>
            :props.onGameOver(rounds)} 
           Rounds: {rounds}
         </Text>
