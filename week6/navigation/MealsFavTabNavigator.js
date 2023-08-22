@@ -1,4 +1,9 @@
 import React from "react";
+// import library ที่จำเป็น
+import { StyleSheet, Text, View, StatusBar } from "react-native";
+import { NavigationContainer } from "@react-navigation/native"; // v.6.x
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native"; // v.6.x
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -6,21 +11,29 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import CategoryMealsScreen from "./screens/CategoryMealsScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
+import MyNavigator from "./navigation/MyNavigator";
+// Tab
+import MealNavigator from "./MealNavigator";
+import FavNavigator from "./FavNavigator";
+// import screen ที่เกี่ยวข้อง
 
-// import คอมโพเนนต์ที่จำเป็น done
+// สร้าง navigator ตามโจทย์กำหนด
 
-const StackMeal = createNativeStackNavigator();
+// สร้าง function สำหรับการกำหนด Navigator แต่ละตัว เช่น
+// function MyXXNavigator() {
+//   return (
+//     // กำหนดรายละเอียดของ navigator
+//   );
+// }
 
-export default function App() {
-  // เพิ่มโค้ดส่วนนี้ เพื่อจัดการ Stack Navigation
-  return (
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!
-    //     Hi Owen!
-    //   </Text>
-    //   <StatusBar style="auto" />
-    // </View>
-    <NavigationContainer>
+// อาจกำหนด Navigator เพิ่มได้
+// function MyYYNavigator() {
+//   return (
+//     // กำหนดรายละเอียดของ navigator
+//   );
+// }
+{
+  /* <NavigationContainer>
       <StackMeal.Navigator initialRouteName="S1" screenOptions={{ headerStyle: { backgroundColor: "#4a148c" },  headerTintColor: "white", }}>
         
         <StackMeal.Screen
@@ -59,15 +72,16 @@ export default function App() {
           }}
         />
       </StackMeal.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> */
+}
+// สร้าง Navigator หลัก
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+function MealsFavTabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Meals" component={ MealNavigator} />
+      <Tab.Screen name="Tab_2" component={FavNavigator} />
+    </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
