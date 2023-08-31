@@ -2,65 +2,24 @@ import React from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native"; // v.6.x
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import CategoriesScreen from "./screens/CategoriesScreen";
 import CategoryMealsScreen from "./screens/CategoryMealsScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
-
+import MyNavigator from "./navigation/MyNavigator";
 // import คอมโพเนนต์ที่จำเป็น done
 
 const StackMeal = createNativeStackNavigator();
 
 export default function App() {
   // เพิ่มโค้ดส่วนนี้ เพื่อจัดการ Stack Navigation
-  return (
+  return (<MyNavigator/>)
+    
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!
     //     Hi Owen!
     //   </Text>
     //   <StatusBar style="auto" />
     // </View>
-    <NavigationContainer>
-      <StackMeal.Navigator initialRouteName="S1" screenOptions={{ headerStyle: { backgroundColor: "#4a148c" },  headerTintColor: "white", }}>
-        
-        <StackMeal.Screen
-          name="Categories"
-          component={CategoriesScreen}
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#4a148c",
-              headerTintColor: "white",
-            },
-          }}
-        />
-        <StackMeal.Screen
-          name="CategoryMeals"
-          
-          component={CategoryMealsScreen}
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#4a148c",
-              headerTintColor: "white",
-            },
-          }}
-          // options={
-          //   ({ route }) => ({
-          //   title: "ID-" + route.params.id.toString(),
-          //   }) }
-        />
-        <StackMeal.Screen
-          name="MealDetail"
-          component={MealDetailScreen}
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#4a148c",
-              headerTintColor: "white",
-            },
-          }}
-        />
-      </StackMeal.Navigator>
-    </NavigationContainer>
-  );
 }
 
 const styles = StyleSheet.create({
