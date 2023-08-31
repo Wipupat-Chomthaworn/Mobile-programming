@@ -25,7 +25,8 @@ const MealDetailScreen = ({route, navigation}) => {
         title="Go Back to Categories"
         onPress={() => {
           // เขียนโค้ดเพิ่ม
-          navigation.navigate("Categories");
+          // navigation.navigate("Categories");
+          navigation.popToTop();
         }}
       />
     </View>

@@ -26,7 +26,7 @@ const MealList = (props) => {
         image={itemData.item.imageUrl}
         onSelectMeal={() => {
           // เขียนโค้ดเพิ่ม
-          navigation.navigate(
+          props.navigation.navigate(
             "MealDetail" /* routename(name in sceen we want to navigate to*/,
             {
               Id: itemData.item.id,

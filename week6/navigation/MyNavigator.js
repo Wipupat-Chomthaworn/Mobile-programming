@@ -14,6 +14,7 @@ import MealDetailScreen from "../screens/MealDetailScreen";
 // import FavTab from "../screens/FavoritesScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersSceen from "../screens/FiltersScreen";
+import FavNavigator from "./FavNavigator";
 // import screen ที่เกี่ยวข้อง
 
 // สร้าง navigator ตามโจทย์กำหนด
@@ -72,7 +73,8 @@ function MyStackNavigator() {
 // Route name : Favorites
 // ▪ component เป็น FavoritesScreen
 // o Route name : MealDetail
-{/* <StackMeal.Navigator
+{
+  /* <StackMeal.Navigator
       initialRouteName="Categories" //set page that you want to start first
       screenOptions={{
         headerStyle: { backgroundColor: "#4a148c" },
@@ -113,18 +115,37 @@ function MyStackNavigator() {
           },
         }}
       />
-    </StackMeal.Navigator> */}
+    </StackMeal.Navigator> */
+}
 // อาจกำหนด Navigator เพิ่มได้
 function MyTabNavigator() {
   const Tab = createBottomTabNavigator();
 
   console.log("Tab");
-  
+
   return (
     // กำหนดรายละเอียดของ navigator
     <Tab.Navigator>
-      <Tab.Screen name="Meals" component={MyStackNavigator} />
-      <Tab.Screen name="Fav" component={FavoritesScreen} />
+      <Tab.Screen
+        name="Meals"
+        component={MyStackNavigator}
+        options={{
+          headerShown:false, //hide header of tab
+          tabBarIcon: ({ color }) => {
+            return <AntDesign name="apple1" size={24} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Fav"
+        component={FavNavigator}
+        options={{
+          headerShown:false,
+          tabBarIcon: ({ color }) => {
+            return <AntDesign name="heart" size={24} color={color} />;
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -145,19 +166,17 @@ export default function MyNavigator() {
           name="Menu"
           component={MyTabNavigator}
           options={{
+            headerShown:false,
             drawerLabel: "Menu 1",
             drawerIcon: ({ color }) => {
               return <AntDesign name="tags" size={24} color={color} />;
             },
           }}
         />
-        <Drawer.Screen name="Filter" component={FiltersSceen} />
+        <Drawer.Screen name="Filter" component={FiltersSceen} 
+        />
       </Drawer.Navigator>
       {/* รายละเอียดของ Navigator หลัก (MainNavigator) */}
     </NavigationContainer>
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app! Hi Owen!</Text>
-    //   <StatusBar style="auto" />
-    // </View>
   );
 }
