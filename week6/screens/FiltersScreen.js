@@ -18,7 +18,7 @@ const FiltersScreen = (props) => {
         <Switch
           trackColor={{ true: "#ff6f00", false: "lightgray" }}
           thumbColor={"#ff6f00"}
-          value={false}
+          // value={false}
         />
       </View>
       <View style={styles.filterContainer}>

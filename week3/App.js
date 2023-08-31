@@ -17,7 +17,7 @@ export default function Example01() {
     if (text.trim() !== "") {
       // Only add non-empty texts to the array
       setTextArray([...textArray, { stringData: text }]); //... mean add array by keep old value in array(not reset just add new one!)
-      // { stringData: text } for lebel data as stringData not type just name
+      // { stringData: text } for label data as stringData not type just name
       setText(""); // Clear the input after saving
     }
   };
@@ -45,7 +45,9 @@ export default function Example01() {
             //     </View>
             //   </TouchableOpacity>
             // </View>
-            <Text key={index}> {item.stringData} </Text>
+
+            <Text key={index}> {item.stringData} </Text> 
+            //stringdata just for label object to find (notmandatory{justput textin})
           );
         })}
       </ScrollView>
