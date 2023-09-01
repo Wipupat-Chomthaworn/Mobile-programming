@@ -4,13 +4,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import FavNav from "./FavNavigator";
 import MealNavigator from "./MealNavigator";
+import FavoritesScreen from '../screens/FavoritesScreen';
 
 const Tab = createBottomTabNavigator();
 
 export default function MealsFavTabNavigator() {
     return (
         <Tab.Navigator
-            initialRouteName="Meals"
+            initialRouteName="MealsTab"
             screenOptions={{
                 tabBarActiveTintColor: "darkblue",
                 tabBarInactiveTintColor: "gray",
@@ -18,7 +19,7 @@ export default function MealsFavTabNavigator() {
                 tabBarLabelStyle: { fontSize: 15 },
             }}
         >
-            <Tab.Screen
+               <Tab.Screen
                 name="MealsTab"
                 component={MealNavigator}
                 options={{
@@ -29,7 +30,7 @@ export default function MealsFavTabNavigator() {
                     title: "Meals",
                 }}
             />
-            <Tab.Screen
+             <Tab.Screen
                 name="FavoritesTab"
                 component={FavNav}
                 options={{
@@ -40,6 +41,8 @@ export default function MealsFavTabNavigator() {
                     title: "Favorites",
                 }}
             />
+         
+           
         </Tab.Navigator>
     );
 };

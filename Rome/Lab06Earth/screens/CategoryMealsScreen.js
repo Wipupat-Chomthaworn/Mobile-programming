@@ -1,11 +1,20 @@
 import React from "react";
-import {View, StyleSheet,} from "react-native";
-import { MEALS } from "../data/dummy-data";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Platform,
+  FlatList,
+} from "react-native";
+import { CATEGORIES, MEALS } from "../data/dummy-data";
+// import MealItem from "../components/MealItem";
 import MealList from "../components/MealList";
 
-const CategoryMealsScreen = ({route, navigation}) => {
+const CategoryMealsScreen = ({ route, navigation }) => {
+  const { prev, id } = route.params;
+  const catId = id
 
-  const catId = route.params.categoryId;
   const displayedMeals = MEALS.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   );
@@ -13,9 +22,9 @@ const CategoryMealsScreen = ({route, navigation}) => {
   return (
     <View style={styles.screen}>
       <MealList
-          listData={displayedMeals}
-          navigation={navigation}
-       />
+        listData={displayedMeals}
+        navigation={navigation}>
+      </MealList>
     </View>
 
   );

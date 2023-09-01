@@ -1,17 +1,21 @@
 import React from "react";
 import { FlatList, View, StyleSheet } from "react-native";
-import MealItem from "./MealItem";
+import MealItem from "../components/MealItem";
+
 const MealList = (props) => {
+  const navigation = props.navigation;
+  const listData = props.listData;
   const renderMealItem = (itemData) => {
     return (
+      //เขียนโค้ดเพิ่ม
       <MealItem
         title={itemData.item.title}
         duration={itemData.item.duration}
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
-        image={itemData.item.imageUrl}
+        imageUrl={itemData.item.imageUrl}
         onSelectMeal={() => {
-          props.navigation.navigate("MealDetail", { title: itemData.item.title, mealStep: itemData.item.steps });
+          navigation.navigate("MealDetail", {steps: itemData.item.steps, title: itemData.item.title })
         }}
       />
     );
@@ -19,13 +23,13 @@ const MealList = (props) => {
 
   return (
     <View style={styles.list}>
-      <View style={styles.screen}>
-        <FlatList
-          style={{ width: "100%" }}
-          data={props.listData}
-          renderItem={renderMealItem}
-        />
-      </View>
+      <FlatList
+        //เขียนโค้ดเพิ่ม
+        style={{ width: "100%", height: "100%" }}
+        data={listData}
+        navigation={navigation}
+        renderItem={renderMealItem}
+      />
     </View>
   );
 };
