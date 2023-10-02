@@ -13,16 +13,16 @@ import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersSceen from "../screens/FiltersScreen";
 import FavNavigator from "./FavNavigator";
 import Icon from "react-native-vector-icons/Ionicons";
-import { useDispatch, Provider} from "react-redux";
+import { useDispatch, Provider } from "react-redux";
 import { toggleFavorite } from "../store/actions/mealsAction";
 
 function MyStackNavigator() {
   const StackMeal = createNativeStackNavigator();
   // create Update(dispatch func)
-  // const dispatch = useDispatch();
-  // const toggleFavoriteHandler = (mealId) => {
-  //   dispatch(toggleFavorite(mealId));
-  // };
+  const dispatch = useDispatch();
+  const toggleFavoriteHandler = (mealId) => {
+    dispatch(toggleFavorite(mealId));
+  };
   return (
     <StackMeal.Navigator
       initialRouteName="Categories" //set page that you want to start first
@@ -64,16 +64,16 @@ function MyStackNavigator() {
         //     headerTintColor: "white",
         //   },
         // }}
-        // options={({ route }) => ({
-        //   title: route.params.Title,
-        //   headerRight: () => (
-        //     <TouchableOpacity
-        //       onPress={() => toggleFavoriteHandler(route.params.ID)}
-        //     >
-        //       <Icon name="ios-star" size={23} color={"white"}></Icon>
-        //     </TouchableOpacity>
-        //   ),
-        // })}
+        options={({ route }) => ({
+          title: route.params.Title,
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => toggleFavoriteHandler(route.params.ID)}
+            >
+              <Icon name="ios-star" size={23} color={"white"}></Icon>
+            </TouchableOpacity>
+          ),
+        })}
       />
     </StackMeal.Navigator>
   );
