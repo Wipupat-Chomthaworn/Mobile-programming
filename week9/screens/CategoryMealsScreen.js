@@ -8,6 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
+import { useSelector } from 'react-redux';
 import MealItem from "../components/MealItem";
 
 const CategoryMealsScreen = ({route, navigation}) => {

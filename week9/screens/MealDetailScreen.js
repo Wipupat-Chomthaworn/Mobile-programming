@@ -1,30 +1,18 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { MEALS } from "../data/dummy-data";
+import { Ionicons } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const MealDetailScreen = ({route, navigation}) => {
-  // เขียนโค้ดเพิ่ม เพื่อดึงข้อมูลเกี่ยวกับเมนูอาหารที่ผู้ใช้เลือกเอาไว้
-
-
+const MealDetailScreen = ({ route, navigation }) => {
   return (
     <View style={styles.screen}>
       <Text>The Meal Detail Screen!</Text>
-      <Text>
-      {route.params.Title}
-
-        {/* ...เขียนโค้ดเพิ่มแสดงชื่อเมนูอาหารที่เลือก... */}
-
-      </Text>
-      <Text>
-        {route.params.Steps}
-
-        {/* ...เขียนโค้ดเพิ่มแสดงวิธีทำอาหารของเมนูที่เลือก... */}
-
-        </Text>
+      <Text>Dish: {route.params.Title}</Text>
+      <Text>Steps: {route.params.Steps}</Text>
       <Button
         title="Go Back to Categories"
         onPress={() => {
-          // เขียนโค้ดเพิ่ม
           navigation.navigate("Categories");
         }}
       />
