@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import { createSlice} from '@reduxjs/toolkit'
 import { MEALS } from '../data/dummy-data'
 
 
@@ -11,17 +11,6 @@ const mealSlice = createSlice({
     favoriteMeals:[],
   },
   reducers: {
-    // favAdd: state => {
-    //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    //   // doesn't actually mutate the state because it uses the Immer library,
-    //   // which detects changes to a "draft state" and produces a brand new
-    //   // immutable state based off those changes
-
-    //   state.value += 1
-    // },
-    // decremented: state => {
-    //   state.value -= 1
-
     toggleFavorite: (state, action) => {
         // console.log("payload na: "+action.payload.id);
         console.log("Fav na: " + state.favoriteMeals);
