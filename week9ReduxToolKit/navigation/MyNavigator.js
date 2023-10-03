@@ -5,25 +5,27 @@ import { NavigationContainer } from "@react-navigation/native"; // v.6.x
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import MealNavigator from "../screens/FavoritesScreen";
 import { AntDesign } from "@expo/vector-icons";
+
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
+// import FavTab from "../screens/FavoritesScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersSceen from "../screens/FiltersScreen";
-// import FavNavigator from "./FavNavigator";
-import Icon from "react-native-vector-icons/Ionicons";
-import { useDispatch, Provider } from "react-redux";
-import { toggleFavorite } from "../store/actions/mealsAction";
+import FavNavigator from "./FavNavigator";
+// import screen ที่เกี่ยวข้อง
+
+// สร้าง navigator ตามโจทย์กำหนด
+// สร้าง function สำหรับการกำหนด Navigator แต่ละตัว เช่น
+// const Stack = createNativeStackNavigator();
 
 function MyStackNavigator() {
   const StackMeal = createNativeStackNavigator();
-  // create Update(dispatch func)
-  // const dispatch = useDispatch();
-  // const toggleFavoriteHandler = (mealId) => {
-  //   dispatch(toggleFavorite(mealId));
-  // };
+
   return (
+    // กำหนดรายละเอียดของ navigator
     <StackMeal.Navigator
       initialRouteName="Categories" //set page that you want to start first
       screenOptions={{
@@ -58,50 +60,64 @@ function MyStackNavigator() {
       <StackMeal.Screen
         name="MealDetail"
         component={MealDetailScreen}
-        // screenOptions={{
-        //   headerStyle: {
-        //     backgroundColor: "#4a148c",
-        //     headerTintColor: "white",
-        //   },
-        // }}
-        // options={({ route }) => ({
-        //   title: route.params.Title,
-        //   headerRight: () => (
-        //     <TouchableOpacity
-        //       onPress={() => toggleFavoriteHandler(route.params.ID)}
-        //     >
-        //       <Icon name="ios-star" size={23} color={"white"}></Icon>
-        //     </TouchableOpacity>
-        //   ),
-        // })}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#4a148c",
+            headerTintColor: "white",
+          },
+        }}
       />
     </StackMeal.Navigator>
   );
 }
-function FavNavigator() {
-  const StackFav = createNativeStackNavigator();
-  return (
-    <StackFav.Navigator
-      initialRouteName="FavScreen"
+// Route name : Favorites
+// ▪ component เป็น FavoritesScreen
+// o Route name : MealDetail
+{
+  /* <StackMeal.Navigator
+      initialRouteName="Categories" //set page that you want to start first
       screenOptions={{
-        drawerActiveTintColor: "orange",
-        drawerInactiveTintColor: "gray",
+        headerStyle: { backgroundColor: "#4a148c" },
+        headerTintColor: "white",
       }}
     >
-      <StackFav.Screen name="MealDetail" component={MealDetailScreen} />
-      <StackFav.Screen
-        name="FavScreen"
-        component={FavoritesScreen}
-        options={{
-          drawerLabel: "Menu 1",
-          drawerIcon: ({ color }) => {
-            return <AntDesign name="tags" size={24} color={color} />;
+      <StackMeal.Screen
+        name="Categories"
+        component={CategoriesScreen}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#4a148c",
+            headerTintColor: "white",
           },
         }}
       />
-    </StackFav.Navigator>
-  );
+      <StackMeal.Screen
+        name="CategoryMeals"
+        component={CategoryMealsScreen}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#4a148c",
+            headerTintColor: "white",
+          },
+        }}
+        // options={
+        //   ({ route }) => ({
+        //   title: "ID-" + route.params.id.toString(),
+        //   }) }
+      />
+      <StackMeal.Screen
+        name="MealDetail"
+        component={MealDetailScreen}
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#4a148c",
+            headerTintColor: "white",
+          },
+        }}
+      />
+    </StackMeal.Navigator> */
 }
+// อาจกำหนด Navigator เพิ่มได้
 function MyTabNavigator() {
   const Tab = createBottomTabNavigator();
 
@@ -114,7 +130,7 @@ function MyTabNavigator() {
         name="Meals"
         component={MyStackNavigator}
         options={{
-          headerShown: false, //hide header of tab
+          headerShown:false, //hide header of tab
           tabBarIcon: ({ color }) => {
             return <AntDesign name="apple1" size={24} color={color} />;
           },
@@ -124,7 +140,7 @@ function MyTabNavigator() {
         name="Fav"
         component={FavNavigator}
         options={{
-          headerShown: false,
+          headerShown:false,
           tabBarIcon: ({ color }) => {
             return <AntDesign name="heart" size={24} color={color} />;
           },
@@ -150,14 +166,15 @@ export default function MyNavigator() {
           name="Menu"
           component={MyTabNavigator}
           options={{
-            headerShown: false,
+            headerShown:false,
             drawerLabel: "Menu 1",
             drawerIcon: ({ color }) => {
               return <AntDesign name="tags" size={24} color={color} />;
             },
           }}
         />
-        <Drawer.Screen name="Filter" component={FiltersSceen} />
+        <Drawer.Screen name="Filter" component={FiltersSceen} 
+        />
       </Drawer.Navigator>
       {/* รายละเอียดของ Navigator หลัก (MainNavigator) */}
     </NavigationContainer>
