@@ -7,6 +7,7 @@ const mealSlice = createSlice({
   initialState: {
     // value: 0
     meals:MEALS,
+    filteredMeals: MEALS,
     favoriteMeals:[],
   },
   reducers: {
@@ -45,4 +46,5 @@ const mealSlice = createSlice({
   }
 })
 
-export const { toggleFavorite } = mealSlice.actions
+export const { toggleFavorite } = mealSlice.actions;
+export default mealSlice.reducer;
