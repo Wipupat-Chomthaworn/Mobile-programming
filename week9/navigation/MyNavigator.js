@@ -15,9 +15,9 @@ import FiltersSceen from "../screens/FiltersScreen";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useDispatch, Provider } from "react-redux";
 import { toggleFavorite } from "../store/actions/mealsAction";
-
+const StackMeal = createNativeStackNavigator();
 function MyStackNavigator() {
-  const StackMeal = createNativeStackNavigator();
+  
   // create Update(dispatch func)
   // const dispatch = useDispatch();
   // const toggleFavoriteHandler = (mealId) => {

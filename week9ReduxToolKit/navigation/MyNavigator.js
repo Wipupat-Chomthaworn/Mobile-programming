@@ -1,6 +1,12 @@
 import React from "react";
 // import library ที่จำเป็น
-import { StyleSheet, Text, View, StatusBar } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  TouchableOpacity,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native"; // v.6.x
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -15,13 +21,31 @@ import MealDetailScreen from "../screens/MealDetailScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersSceen from "../screens/FiltersScreen";
 import FavNavigator from "./FavNavigator";
-// import screen ที่เกี่ยวข้อง
 
-// สร้าง navigator ตามโจทย์กำหนด
-// สร้าง function สำหรับการกำหนด Navigator แต่ละตัว เช่น
-// const Stack = createNativeStackNavigator();
+import { toggleFavorite } from "../store/meals";
+import { useDispatch } from "react-redux";
+import { Header, Icon } from "@rneui/themed";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { Ionicons } from "@expo/vector-icons";
+
+const CustomHeaderButton = (props) => {
+  return (
+    <HeaderButtons
+      {...props}
+      IconComponent={Ionicons}
+      iconSize={23}
+      color="white"
+    />
+  );
+};
 
 function MyStackNavigator() {
+  const dispatch = useDispatch();
+  const toggleFavoriteHandler = (id) => {
+    // ie = id.Id;
+    console.log("ID", id.Id);
+    dispatch(toggleFavorite(id.Id));
+  };
   const StackMeal = createNativeStackNavigator();
 
   return (
@@ -60,12 +84,41 @@ function MyStackNavigator() {
       <StackMeal.Screen
         name="MealDetail"
         component={MealDetailScreen}
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "#4a148c",
-            headerTintColor: "white",
-          },
-        }}
+        // options={({route})=>({
+        //   headerRight: () => (
+        //       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        //           <Item
+        //               title="Favorite"
+        //               iconName="ios-star"
+        //               onPress={() => {toggleFavoriteHandler(route.params.mealItem.id)}}
+        //           />
+        //       </HeaderButtons>
+        //   )})}
+
+        options={({ route }) => ({
+          title: route.params.categoryTitle,
+          headerStyle: { backgroundColor: "#4a148c" },
+          headerTintColor: "white",
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => toggleFavoriteHandler(route.params)}
+            >
+              <Icon
+                name="star"
+                size={24}
+                color="yellow"
+                style={{ marginRight: 10 }}
+              />
+            </TouchableOpacity>
+          ),
+        })}
+
+        // screenOptions={{
+        //   headerStyle: {
+        //     backgroundColor: "#4a148c",
+        //     headerTintColor: "white",
+        //   },
+        // }}
       />
     </StackMeal.Navigator>
   );
@@ -130,7 +183,7 @@ function MyTabNavigator() {
         name="Meals"
         component={MyStackNavigator}
         options={{
-          headerShown:false, //hide header of tab
+          headerShown: false, //hide header of tab
           tabBarIcon: ({ color }) => {
             return <AntDesign name="apple1" size={24} color={color} />;
           },
@@ -140,7 +193,7 @@ function MyTabNavigator() {
         name="Fav"
         component={FavNavigator}
         options={{
-          headerShown:false,
+          headerShown: false,
           tabBarIcon: ({ color }) => {
             return <AntDesign name="heart" size={24} color={color} />;
           },
@@ -166,15 +219,14 @@ export default function MyNavigator() {
           name="Menu"
           component={MyTabNavigator}
           options={{
-            headerShown:false,
+            headerShown: false,
             drawerLabel: "Menu 1",
             drawerIcon: ({ color }) => {
               return <AntDesign name="tags" size={24} color={color} />;
             },
           }}
         />
-        <Drawer.Screen name="Filter" component={FiltersSceen} 
-        />
+        <Drawer.Screen name="Filter" component={FiltersSceen} />
       </Drawer.Navigator>
       {/* รายละเอียดของ Navigator หลัก (MainNavigator) */}
     </NavigationContainer>

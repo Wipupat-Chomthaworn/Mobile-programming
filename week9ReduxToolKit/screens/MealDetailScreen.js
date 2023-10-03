@@ -5,7 +5,7 @@ import { MEALS } from "../data/dummy-data";
 const MealDetailScreen = ({route, navigation}) => {
   // เขียนโค้ดเพิ่ม เพื่อดึงข้อมูลเกี่ยวกับเมนูอาหารที่ผู้ใช้เลือกเอาไว้
 
-
+  console.log("Meal" , route.params);
   return (
     <View style={styles.screen}>
       <Text>The Meal Detail Screen!</Text>

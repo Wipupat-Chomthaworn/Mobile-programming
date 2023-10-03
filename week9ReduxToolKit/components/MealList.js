@@ -32,6 +32,7 @@ const MealList = (props) => {
               Id: itemData.item.id,
               Title: itemData.item.title,
               Steps: itemData.item.steps /* params */,
+              mealItem: itemData.item,
             }
           );
         }}
