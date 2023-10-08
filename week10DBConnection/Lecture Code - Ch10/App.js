@@ -5,9 +5,12 @@ import Example01 from "./examples/Example01";
 import Example02 from "./examples/Example02";
 import Example03 from "./examples/Example03";
 import Example04 from "./examples/Example04";
+import MyNavigator from "./navigation/MyNavigator";
+
 
 export default function App() {
-  return <Example04 />;
+  // return <Example04 />;
+  return (<MyNavigator/>);
 }
 
 const styles = StyleSheet.create({
