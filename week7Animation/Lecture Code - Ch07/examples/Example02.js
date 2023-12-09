@@ -3,10 +3,12 @@ import { Animated, Text, View, StyleSheet, Button, Easing } from "react-native";
 
 const Example02 = (props) => {
   const spinAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
-
+//  mapping from useRef to Realvalue
   const spin = spinAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "360deg"],
+    // ค่าที่เข้า 0-1
+    inputRange: [0, 1], 
+    outputRange: ["0deg", "360deg"], 
+    // valueจริงจะออกมา0-360
   });
 
   const spinning = () => {
@@ -24,6 +26,7 @@ const Example02 = (props) => {
   return (
     <View style={styles.container}>
       <Animated.Image
+        // Tag that want to Animated
         style={{ width: 180, height: 150, transform: [{ rotate: spin }] }}
         source={require("../assets/luffy.png")}
       />

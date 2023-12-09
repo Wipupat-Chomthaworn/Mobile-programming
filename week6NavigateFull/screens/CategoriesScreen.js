@@ -21,7 +21,8 @@ const CategoriesScreen = ({navigation}) => {
         color={ itemData.item.color}
         onSelect={() => {
           // เขียนโค้ดเพิ่ม
-          navigation.navigate("CategoryMeals"/* routename(name in sceen we want to navigate to*/, { categoryId: itemData.item.id , categoryTitle:itemData.item.title /* params */ })
+          navigation.navigate("CategoryMeals"/* routename(name in sceen we want to navigate to*/
+          , { categoryId: itemData.item.id , categoryTitle:itemData.item.title /* params */ })
 
         }}
       />

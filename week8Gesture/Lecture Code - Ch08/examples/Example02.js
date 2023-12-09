@@ -3,7 +3,6 @@ import { Animated, PanResponder, StyleSheet, View } from "react-native";
 
 const Example02 = () => {
   const pan = useRef(new Animated.ValueXY()).current;
-
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onPanResponderGrant: () => {
@@ -11,16 +10,12 @@ const Example02 = () => {
         x: pan.x._value,
         y: pan.y._value,
       });
-      pan.setValue({ x: 0, y: 0 });
-    },
+      pan.setValue({ x: 0, y: 0 });},
     onPanResponderMove: Animated.event(
-      [
-        null,
-        {
+      [null,{
           dx: pan.x, // x,y are Animated.Value
           dy: pan.y,
-        },
-      ],
+        },],
       { useNativeDriver: false }
     ),
     onPanResponderRelease: () => {

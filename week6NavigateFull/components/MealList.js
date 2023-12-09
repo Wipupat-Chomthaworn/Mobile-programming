@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
-import MealItem from "../components/MealItem";
+import MealItem from "./MealItem";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 
 const MealList = (props) => {
